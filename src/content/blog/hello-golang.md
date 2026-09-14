@@ -5,6 +5,8 @@ excerpt: "Why Go is becoming the language of choice for modern backend and cloud
 tags: ["Golang", "Backend", "Programming"]
 ---
 
+---
+
 Go, often referred to as Golang, is an open-source programming language developed by Google. It was designed to make it easy to build simple, reliable, and efficient software.
 
 ### Why Choose Go?
@@ -29,4 +31,5 @@ func main() {
 ```
 
 If you are looking to build microservices or command-line tools, Go is definitely worth your time!
+
 ---
