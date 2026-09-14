@@ -21,8 +21,8 @@ const permanentMarker = Permanent_Marker({
 });
 
 export const metadata: Metadata = {
-  title: 'Cycling Log',
-  description: 'Cycling Route Tracker & Personal Log',
+  title: 'Fractal Trails',
+  description: 'A personal space exploring the intersection of code, mathematics, and nature on two wheels.',
 };
 
 export default function RootLayout({
