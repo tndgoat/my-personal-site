@@ -1,11 +1,17 @@
 // src/components/RideCard.tsx
+"use client";
+
+import { useState } from 'react';
 import { Ride } from '@/types/ride';
+import RideModal from './RideModal';
 
 interface RideCardProps {
     ride: Ride;
 }
 
 export default function RideCard({ ride }: RideCardProps) {
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
     // Normalize GPS coordinates to fit into an SVG viewport
     const renderSvgPolyline = (coords: [number, number][]) => {
         if (!coords || coords.length === 0) return '';
@@ -36,32 +42,42 @@ export default function RideCard({ ride }: RideCardProps) {
     };
 
     return (
-        <div className="group flex flex-col items-center cursor-pointer transition-transform duration-200 hover:scale-105">
-            {/* Title and Metrics */}
-            <div className="text-center mb-3">
-                <h3 className="text-lg sm:text-xl font-bold tracking-wide text-zinc-100">
-                    {ride.title}
-                </h3>
-                <p className="text-sm sm:text-base text-zinc-400 mt-1 whitespace-nowrap">
-                    {ride.distance} miles • {ride.avgSpeed} mph • {ride.elevationGain} ft
-                </p>
+        <>
+            <div
+                onClick={() => setIsModalOpen(true)}
+                className="group flex flex-col items-center cursor-pointer transition-transform duration-200 hover:scale-105"
+            >
+                {/* Title and Metrics */}
+                <div className="text-center mb-3">
+                    <h3 className="text-lg sm:text-xl font-bold tracking-wide text-zinc-100">
+                        {ride.title}
+                    </h3>
+                    <p className="text-sm sm:text-base text-zinc-400 mt-1 whitespace-nowrap">
+                        {ride.distance} miles • {ride.avgSpeed} mph • {ride.elevationGain} ft
+                    </p>
+                </div>
+
+                {/* SVG Canvas with Increased Viewport */}
+                <div className="relative h-44 sm:h-48 lg:h-56 w-full flex items-center justify-center">
+                    <svg
+                        viewBox="0 0 240 240"
+                        className="h-full w-full stroke-white transition-opacity duration-200 group-hover:opacity-80"
+                    >
+                        <polyline
+                            fill="none"
+                            strokeWidth="3"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            points={renderSvgPolyline(ride.coordinates)}
+                        />
+                    </svg>
+                </div>
             </div>
 
-            {/* SVG Canvas with Increased Viewport */}
-            <div className="relative h-44 sm:h-48 lg:h-56 w-full flex items-center justify-center">
-                <svg
-                    viewBox="0 0 240 240"
-                    className="h-full w-full stroke-white transition-opacity duration-200 group-hover:opacity-80"
-                >
-                    <polyline
-                        fill="none"
-                        strokeWidth="3"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        points={renderSvgPolyline(ride.coordinates)}
-                    />
-                </svg>
-            </div>
-        </div>
+            {/* Conditionally render the modal when triggered via click */}
+            {isModalOpen && (
+                <RideModal ride={ride} onClose={() => setIsModalOpen(false)} />
+            )}
+        </>
     );
 }

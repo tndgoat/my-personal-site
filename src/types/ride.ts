@@ -8,4 +8,7 @@ export interface Ride {
     date: string;
     // Normalized or raw GPS coordinate pairs: [x, y] or [lng, lat]
     coordinates: [number, number][];
+    // New fields for the modal
+    images?: string[]; // Array of image URLs
+    content?: string;  // Markdown content (parsed from .md file)
 }
