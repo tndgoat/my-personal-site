@@ -1,27 +1,18 @@
-// src/app/blog/page.tsx
 import { getAllPosts } from '@/lib/blog';
-import BlogListClient from './BlogListClient';
+import BlogListClient from '@/components/blog/BlogListClient';
+import PageHeader from '@/components/ui/PageHeader';
 
 export default function BlogPage() {
-    // Fetch posts securely on the server
-    const posts = getAllPosts();
+  const posts = getAllPosts();
 
-    return (
-        <div className="space-y-12 mx-auto max-w-4xl">
-            {/* Blog Header */}
-            <div className="text-center space-y-4">
-                <h1 className="font-[family-name:var(--font-marker)] text-5xl sm:text-6xl tracking-wider">
-                    Engineering Notes
-                </h1>
-                <p className="text-xl text-zinc-400">
-                    Thoughts on coding, tech, and building software.
-                </p>
-            </div>
+  return (
+    <div className="mx-auto max-w-4xl space-y-12">
+      <PageHeader
+        title="Engineering Notes"
+        description="Thoughts on coding, tech, and building software."
+      />
 
-            <hr className="border-zinc-800" />
-
-            {/* Pass data to interactive client component */}
-            <BlogListClient initialPosts={posts} />
-        </div>
-    );
+      <BlogListClient initialPosts={posts} />
+    </div>
+  );
 }

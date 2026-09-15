@@ -1,14 +1,11 @@
-// src/types/ride.ts
 export interface Ride {
-    id: number;
-    title: string;
-    distance: number; // in miles (or km)
-    avgSpeed: number; // in mph (or km/h)
-    elevationGain: number; // in ft (or m)
-    date: string;
-    // Normalized or raw GPS coordinate pairs: [x, y] or [lng, lat]
-    coordinates: [number, number][];
-    // New fields for the modal
-    images?: string[]; // Array of image URLs
-    content?: string;  // Markdown content (parsed from .md file)
+  id: number;
+  title: string;
+  distance: number;
+  avgSpeed: number;
+  elevationGain: number;
+  date: string;
+  coordinates: [number, number][];
+  images?: string[];
+  content?: string;
 }
