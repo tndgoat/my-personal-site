@@ -1,10 +1,8 @@
-// src/app/layout.tsx
 import type { Metadata } from 'next';
 import { Architects_Daughter, Permanent_Marker } from 'next/font/google';
 import './globals.css';
-import Navbar from '@/components/Navbar';
+import Navbar from '@/components/layout/Navbar';
 
-// Initialize Handwritten body font
 const architectsDaughter = Architects_Daughter({
   weight: '400',
   subsets: ['latin'],
@@ -12,7 +10,6 @@ const architectsDaughter = Architects_Daughter({
   display: 'swap',
 });
 
-// Initialize Permanent Marker title font
 const permanentMarker = Permanent_Marker({
   weight: '400',
   subsets: ['latin'],
@@ -35,9 +32,8 @@ export default function RootLayout({
       lang="en"
       className={`${architectsDaughter.variable} ${permanentMarker.variable} dark`}
     >
-      <body className="min-h-screen bg-black text-white font-[family-name:var(--font-handwritten)] antialiased">
+      <body className="min-h-screen bg-black font-handwritten text-white antialiased">
         <Navbar />
-        {/* Expanded layout container max-width for desktop scaling */}
         <main className="mx-auto max-w-[1400px] px-6 py-12 lg:px-12">{children}</main>
       </body>
     </html>
