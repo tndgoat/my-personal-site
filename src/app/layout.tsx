@@ -31,8 +31,12 @@ export default function RootLayout({
     <html
       lang="en"
       className={`${architectsDaughter.variable} ${permanentMarker.variable} dark`}
+      suppressHydrationWarning
     >
-      <body className="min-h-screen bg-black font-handwritten text-white antialiased">
+      <body
+        className="min-h-screen bg-black font-handwritten text-white antialiased"
+        suppressHydrationWarning
+      >
         <Navbar />
         <main className="mx-auto max-w-[1400px] px-6 py-12 lg:px-12">{children}</main>
       </body>
